@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :products, dependent: :destroy
   has_many :reviews, through: :products, dependent: :destroy
   has_one_attached :image
+
   after_commit :add_default_image, on: %i[create update]
 
   def image_thumbnail

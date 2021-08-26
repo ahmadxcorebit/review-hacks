@@ -1,16 +1,29 @@
-<h1>show page </h1>
- <div>
-   <p>
-     <%= @product.title %>
-   </p>
+<h1 align="center">show page </h1>
+<p align = 'center'><%= link_to 'home page', root_path %></p>
+<p align='center'><%= link_to 'edit page', edit_product_path(@product) %></p>
+<div align = "center">
+  <p>
+    <%= @product.title %>
+  </p>
 
-   <p>
-     <%= @product.description %>
-   </p>
+  <p>
+    <%= @product.description %>
+  </p>
 
-   <p>
-     <%= image_tag(@product.image) %>
-   </p>
+  <p>
+    <% @product.images.each do |image| %>
+      <%= image_tag(image) %>
+    <% end %>
+  </p>
+</div>
 
- </div>
+<h2 align= 'center'> ADD REVIEW </h2>
+  <div align= 'center' >
+    <%= render 'reviews/form'%>
+  </div>
+
+<h3 align='center'>Added Reviews</h3>
+<div align ='center'>
+  <%= render 'reviews/review'%>
+</div>
 

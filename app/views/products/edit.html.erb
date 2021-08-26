@@ -1,5 +1,4 @@
 <h1>edit</h1>
-
 <div>
   <%= form_with model: @product do |form| %>
     <p>
@@ -12,7 +11,7 @@
     </p>
     <p>
       <%= form.label :image %>
-      <%= form.file_field :image %>
+      <%= form.file_field :images, multiple: true %>
     </p>
     <p>
       <%= form.submit %>

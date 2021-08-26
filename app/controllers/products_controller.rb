@@ -1,4 +1,7 @@
 class ProductsController < ApplicationController
+
+  before_action :set_params, only: [:edit, :show]
+
   def index
     @products = Product.all
   end
@@ -8,42 +11,43 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(product_params)
-    @product.user = current_user
+    @product = current_user.products.new(product_params)
     if @product.save
-       flash[:notice] = "product created succesfully"
-       redirect_to @product
+      flash[:notice] = "product created succesfully"
+      redirect_to @product
     else
       render 'new'
     end
   end
 
-  def edit
-    @product = Product.find(params[:id])
-  end
+  def edit; end
 
   def update
     @product = Product.find(params[:id])
     if @product.update(product_params)
-       flash[:notie] = "update succesfully"
-       redirect_to @product
+      flash[:notice] = "update succesfully"
+      redirect_to @product
     else
       render 'edit'
     end
+  end
+
+  def show
+    @review = @product.reviews.build
   end
 
   def destroy
 
   end
 
-  def show
-    @product =Product.find(params[:id])
-  end
-
   private
 
   def product_params
-    params.require(:product).permit(:title, :description, :image, :user_id)
+    params.require(:product).permit(:title, :description, :user_id, images: [])
+  end
+
+  def set_params
+    @product = Product.find(params[:id])
   end
 
 end

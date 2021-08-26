@@ -1,8 +1,13 @@
-<h1>index</h1>
+<h1>Products of the Month</h1>
+
+<%= link_to 'home page', root_path %>
 
 <% @products.each do |product| %>
   <p><%= product.title %></p>
   <p><%= product.description%></p>
-  <p><%= image_tag(product.image) %></p>
+  <p><% product.images.each do |image| %>
+    <%= image_tag(image) %>
+    <% end %>
+  </p>
   <p><%=link_to 'Detail', product_path(product) %></p>
 <% end %>

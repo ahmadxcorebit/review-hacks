@@ -1,22 +1,32 @@
-<h1> new product </h1>
-<% if current_user %>
-  <div>
-    <%= form_with model: @product do |form| %>
-      <p>
-        <%= form.label :title %>
-        <%= form.text_field :title %>
-      </p>
-      <p>
-        <%= form.label :description %>
-        <%= form.text_area :description %>
-      </p>
-      <p>
-        <%= form.label :image %>
-        <%= form.file_field :image %>
-      </p>
-      <p>
-        <%= form.submit %>
-      </p>
-    <% end %>
-  </div>
-<% end %>
+<h1 align="center" > new product </h1>
+<div align = center>
+  <%= render'shared/errors', obj: @product%>
+   <% if current_user %>
+    <div>
+       <%= form_with model: @product do |form| %>
+
+        <div>
+          <p><%= form.label :title %></p>
+          <p><%= form.text_field :title %></p>
+        </div>
+
+        <div>
+          <p><%= form.label :description %></p>
+          <p><%= form.text_field :description %></p>
+        </div>
+
+        <div>
+          <p><%= form.label :images %></p>
+          <p><%= form.file_field :images, multiple: true %></p>
+        </div>
+
+        <p>
+          <%= form.submit %>
+        </p>
+
+      <% end %>
+     </div>
+     <%= link_to 'home page', root_path %>
+     <%= link_to 'all product', products_path %>
+   <% end %>
+</div>

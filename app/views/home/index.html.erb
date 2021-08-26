@@ -4,4 +4,6 @@
 <% if current_user %>
   <%= link_to 'Logout', destroy_user_session_path, method: :delete%>
   <%= link_to 'edit Profile', edit_user_registration_path %>
+  <%= link_to 'create product', new_product_path %>
+  <%= link_to 'all product', products_path %>
 <% end %>

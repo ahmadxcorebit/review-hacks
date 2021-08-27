@@ -1,7 +1,7 @@
 <h1>Products of the Month</h1>
 
 <%= link_to 'home page', root_path %>
-
+<%= render 'products/search' %>
 <% @products.each do |product| %>
   <p><%= product.title %></p>
   <p><%= product.description%></p>

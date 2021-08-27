@@ -1,0 +1,9 @@
+<%= search_form_for @q do |f| %>
+  <p>
+    <%= f.label :title_cont %>
+    <%= f.search_field :title_or_description_cont %>
+  </p>
+  <p>
+    <%= f.submit :search %>
+  </p>
+<% end %>

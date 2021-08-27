@@ -3,9 +3,9 @@ class ProductsController < ApplicationController
   before_action :set_params, only: [:edit, :show]
 
   def index
-    @products = Product.all
+    @q = Product.ransack(params[:q])
+    @products = @q.result
   end
-
   def new
     @product = Product.new
   end

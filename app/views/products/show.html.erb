@@ -1,9 +1,9 @@
 <h1 align="center">show page </h1>
 
-<div align = "center">
-  <p>Title:
+<div class="border border-success">
+  <div class="">Title:
     <%= @product.title %>
-  </p>
+  </div>
   <p>Description:
     <%= @product.description %>
   </p>
@@ -15,12 +15,14 @@
 </div>
 
 <h2 align= 'center'> ADD REVIEW </h2>
-  <div align= 'center' >
-    <%= render 'reviews/form'%>
-  </div>
+<div align= 'center' >
+  <%= render 'reviews/form' %>
+</div>
 
 <h3 align='center'>Added Reviews</h3>
-<div align ='center'>
-  <%= render 'reviews/review'%>
+<div align ='center' id ='reviews_product'>
+  <% @product.reviews.ordered.each do |review| %>
+    <p id="user_review"><%=review.user_review %>
+  <% end %>
 </div>
 

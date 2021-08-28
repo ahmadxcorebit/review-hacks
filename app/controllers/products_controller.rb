@@ -12,11 +12,11 @@ class ProductsController < ApplicationController
 
   def create
     @product = current_user.products.new(product_params)
+    respond_to do |format|
     if @product.save
-      flash[:notice] = "product created succesfully"
-      redirect_to @product
-    else
-      render 'new'
+      format.html { redirect_to @product, notice: 'Product was successfully created.' }
+      format.js
+    end
     end
   end
 

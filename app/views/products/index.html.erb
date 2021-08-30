@@ -1,6 +1,6 @@
-<h1>Products of the Month</h1>
+<h1 align="center">Products of the Month</h1>
 
-<div class="container">
+<div class="container pt-3 p-3 my-3 border">
   <div class="row">
     <%= render 'products/search' %>
   </div>
@@ -22,14 +22,15 @@
       <tr>
         <td><%= pro.title %></td>
         <td><%= pro.description %></td>
-        <% if current_user %>
+        <% if user_signed_in? && current_user == pro.user %>
           <td><%= link_to 'Delete', product_path(pro),
-              method: :delete,:data => { :confirm => 'Are you sure?' },
-              :class => 'btn btn-xs btn-danger' %>
-              <%= link_to 'Details', product_path(pro),
-              class: 'btn btn-xs btn-success' %>
+                  method: :delete,:data => { :confirm => 'Are you sure?' },
+                  :class => 'btn btn-xs btn-danger' %>
           </td>
         <% end %>
+        <td>
+          <%= link_to 'Details', product_path(pro), class: 'btn btn-xs btn-success' %>
+        </td>
       </tr>
     <% end %>
   </tbody>

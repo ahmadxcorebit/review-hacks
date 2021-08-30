@@ -20,6 +20,29 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def edit
+    @review = Review.find(params[:id])
+  end
+
+  def update
+    @review = Review.find(params[:id])
+    if @review.update(review_params)
+      flash[:notice] = "Review was successfully updated"
+      @product = Product.find(params[:review][:product_id])
+      redirect_to product_path(@product)
+    else
+      render 'edit'
+   end
+  end
+
+  def destroy
+    @review = Review.find(params[:id])
+    @product = @review.product
+    @review.destroy
+    flash[:notice] ="Review was successfully destroy"
+    redirect_to product_path(@product)
+  end
+
   private
 
   def review_params

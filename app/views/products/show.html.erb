@@ -19,10 +19,15 @@
   <%= render 'reviews/form' %>
 </div>
 
-<h3 align='center'>Added Reviews</h3>
-<div align ='center' id ='reviews_product'>
+<h3 align = 'center'>Added Reviews</h3>
+<div align = 'center' id = 'reviews_product'>
   <% @product.reviews.ordered.each do |review| %>
-    <p id="user_review"><%=review.user_review %>
+    <p id="user_review"><%= review.user_review %></p>
+    <% if user_signed_in? && (current_user == review.user || @product.user) %>
+      <p><%= link_to 'Delete', review_path(review), method: :delete %></p>
+      <p><%= link_to 'edit', edit_review_path(review) %></p>
+    <% end %>
   <% end %>
+
 </div>
 

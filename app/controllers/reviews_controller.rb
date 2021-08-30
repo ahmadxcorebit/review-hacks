@@ -39,8 +39,10 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @product = @review.product
     @review.destroy
-    flash[:notice] ="Review was successfully destroy"
-    redirect_to product_path(@product)
+    respond_to do |format|
+      format.html { redirect_to product_path(@product), notice: 'Review was successfully destroy.' }
+      format.js
+    end
   end
 
   private

@@ -9,6 +9,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th>images</th>
       <th>title</th>
       <th>Description</th>
       <% if current_user %>
@@ -20,6 +21,7 @@
   <tbody>
     <% @products.each do |pro| %>
       <tr>
+        <td><%= image_tag(pro.images.first) %></td>
         <td><%= pro.title %></td>
         <td><%= pro.description %></td>
         <% if user_signed_in? && current_user == pro.user %>
@@ -35,3 +37,4 @@
     <% end %>
   </tbody>
 </table>
+

@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-  before_action :set_params, only: [:edit, :show]
+  before_action :set_params, only: [:edit, :show, :edit, :destroy]
 
   def index
     @q = Product.ransack(params[:q])
@@ -37,7 +37,8 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-
+    @product.destroy
+    redirect_to @product
   end
 
   private

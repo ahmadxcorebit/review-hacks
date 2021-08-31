@@ -1,11 +1,10 @@
-<div class="container">
-  <div class="row">
-    <%= search_form_for @q do |f| %>
-      <p>
-        <%= f.label :'' %>
-        <%= f.search_field :title_or_description_cont %>
-        <%= f.submit :search %>
-      </p>
-    <% end %>
+<%= search_form_for @q do |f| %>
+  <div class="input-group">
+    <div class="form-outline col-md-10">
+      <%= f.search_field :title_or_description_cont, class: "form-control search-box input-lg" %>
+    </div>
+    <div class="form-outline col-sm-2">
+      <%= f.submit :search, class:"btn btn-md btn-primary offset-1"%>
+    </div>
   </div>
-</div>
+<% end %>

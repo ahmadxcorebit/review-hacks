@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'users/show'
-  root 'home#index'
+  get 'home/index'
+  root 'products#index'
   devise_for :users
   resources :users, only:[:show]
   resources :products

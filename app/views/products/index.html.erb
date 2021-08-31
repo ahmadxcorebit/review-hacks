@@ -1,40 +1,45 @@
 <h1 align="center">Products of the Month</h1>
 
-<div class="container pt-3 p-3 my-3 border">
+<div class="container">
   <div class="row">
     <%= render 'products/search' %>
   </div>
 </div>
+<br>
+<div class="container">
+  <% @products.each do |product| %>
+    <div class="row">
+      <div class="container">
+        <div class="card text-center">
+          <div class="card-header bg-success">
+            <h4>Title:<%= product.title %></h4>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= image_tag(product.images.first, size: "150x150") %></h5>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Description:</h5>
+            <p class="card-text">
+            <%= product.description %></p>
+          </div>
+          <div class="product-meta-details">
+            <small>Created by: <%= product.user.email if product.user %>,
+                 <%= time_ago_in_words(product.created_at) %> ago,
+                  last updated: <%= time_ago_in_words(product.updated_at) %> ago</small>
+          </div>
+          <div class="card-footer text-muted bg-primary">
+            <% if user_signed_in? && current_user == product.user %>
+              <%= link_to 'Edit', edit_product_path(product),class: "btn btn-success" %>
+              <%= link_to 'Delete', product_path(product), method: :delete, data:{confirm:"are you sure"}, class:"btn btn-danger" %>
+            <% end %>
+            <%= link_to 'Show', product_path(product), class: "btn btn-dark" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<br>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>images</th>
-      <th>title</th>
-      <th>Description</th>
-      <% if current_user %>
-        <th>Actions</th>
-      <% end %>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @products.each do |pro| %>
-      <tr>
-        <td><%= image_tag(pro.images.first) %></td>
-        <td><%= pro.title %></td>
-        <td><%= pro.description %></td>
-        <% if user_signed_in? && current_user == pro.user %>
-          <td><%= link_to 'Delete', product_path(pro),
-                  method: :delete,:data => { :confirm => 'Are you sure?' },
-                  :class => 'btn btn-xs btn-danger' %>
-          </td>
-        <% end %>
-        <td>
-          <%= link_to 'Details', product_path(pro), class: 'btn btn-xs btn-success' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 

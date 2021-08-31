@@ -1,34 +1,74 @@
 <h1 align="center">show page </h1>
 
-<div class="border border-success">
-  <div class="">Title:
-    <%= @product.title %>
+<div class = "container">
+  <div class="row">
+    <div class="container">
+      <div class="card text-center">
+        <div class="card-header bg-danger">
+          <h4>Title:<%= @product.title %></h4>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><%= image_tag(@product.images.first, size: "150x150")%></h5>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Description:</h5>
+            <p class="card-text">
+              <%= @product.description %></p>
+        </div>
+        <div class="product-meta-details">
+          <small>Created by: <%= @product.user.email if @product.user%>,
+                  <%= time_ago_in_words(@product.created_at) %> ago,
+                  last updated: <%= time_ago_in_words(@product.updated_at) %> ago</small>
+        </div>
+        <div class="card-footer text-muted bg-primary">
+          <% if user_signed_in? && current_user == @product.user %>
+            <%= link_to 'Edit', edit_product_path(@product),class: "btn btn-success" %>
+            <%= link_to 'Delete', product_path(@product), method: :delete, data:{confirm:"are you sure"}, class:"btn btn-danger"%>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-  <p>Description:
-    <%= @product.description %>
-  </p>
-  <p>
-    <% @product.images.each do |image| %>
-      <%= image_tag(image) %>
-    <% end %>
-  </p>
 </div>
 
-<h2 align= 'center'> ADD REVIEW </h2>
-<div align= 'center' >
-  <%= render 'reviews/form' %>
+<h2 align='center'> ADD REVIEW </h2>
+
+<div align='center'>
+  <div class = "container">
+    <%= render 'reviews/form' %>
+  </div>
 </div>
 
 <h3 align = 'center'>Added Reviews</h3>
-<div align = 'center' id = 'reviews_product'>
-  <% @product.reviews.ordered.each do |review| %>
-    <div id="user_review"><%= review.user_review %></p>
-      <% if user_signed_in? && (current_user == review.user || @product.user) %>
-      <p><%= link_to 'Delete', review_path(review), method: :delete,
-             data: { confirm: "are you sure", remote: true } %></p>
-      <p><%= link_to 'edit', edit_review_path(review) %></p>
-      <% end %>
-    </div>
-  <% end %>
-</div>
 
+<div align='center' id = 'reviews_product'>
+  <% @product.reviews.ordered.each do |review| %>
+    <div class="container mt-5 mb-5">
+      <div class="row height d-flex justify-content-center align-items-center">
+        <div class="col-md-7">
+          <div class="card">
+            <div class="p-3">
+              <div class="mt-2">
+                <div class="d-flex flex-row p-3"> <img src="https://i.imgur.com/zQZSWrt.jpg" width="40" height="40" class="rounded-circle mr-3">
+                  <div class="w-100">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="d-flex flex-row align-items-center">
+                        <div id="user_review"><%= review.user_review %></p>
+                          <% if user_signed_in? && (current_user == review.user || @product.user) %>
+                            <p><%= link_to 'Delete', review_path(review), method: :delete,
+                                data: { confirm: "are you sure", remote: true }, class: "btn btn-danger" %></p>
+                            <p><%= link_to 'edit', edit_review_path(review), class: 'btn btn-dark' %></p>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

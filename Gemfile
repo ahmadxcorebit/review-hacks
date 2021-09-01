@@ -25,6 +25,8 @@ gem 'devise'
 gem 'dotenv-rails'
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
+gem 'pg'
+gem 'yaml_db'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -52,10 +54,7 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
-group :production do
-  gem 'mysql2', '~> 0.5'
-  gem 'rails_12factor'
-end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'ransack'

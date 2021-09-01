@@ -5,12 +5,12 @@ Rails.application.configure do
   config.action_mailer
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { host: '"superails-emails.herokuapp.com", protocol: "https"' }
+  config.action_mailer.default_url_options = { host: "secret-temple-37892.herokuapp.com", protocol: "https" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     user_name:      'mahmadk2@gmail.com',
     password:       'jxtazaww',
-    domain:         'secret-temple-37892.herokuapp.com',
+    domain:         'heroku.com',
     address:       'smtp.gmail.com',
     port:          '587',
     authentication: :plain,
